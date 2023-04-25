@@ -12,6 +12,8 @@
 		F108623429F7443B0017EFB0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F108623329F7443B0017EFB0 /* Assets.xcassets */; };
 		F108623729F7443B0017EFB0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F108623629F7443B0017EFB0 /* Preview Assets.xcassets */; };
 		F108625A29F745740017EFB0 /* purchaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F108625929F745740017EFB0 /* purchaseView.swift */; };
+		F108625C29F759110017EFB0 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F108625B29F759110017EFB0 /* LoginView.swift */; };
+		F108625E29F759180017EFB0 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F108625D29F759180017EFB0 /* MenuView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +42,8 @@
 		F108623C29F7443B0017EFB0 /* puntoDeVentaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = puntoDeVentaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F108624629F7443B0017EFB0 /* puntoDeVentaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = puntoDeVentaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F108625929F745740017EFB0 /* purchaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = purchaseView.swift; sourceTree = "<group>"; };
+		F108625B29F759110017EFB0 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		F108625D29F759180017EFB0 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +94,8 @@
 			children = (
 				F108622F29F744390017EFB0 /* puntoDeVentaApp.swift */,
 				F108623129F744390017EFB0 /* ContentView.swift */,
+				F108625B29F759110017EFB0 /* LoginView.swift */,
+				F108625D29F759180017EFB0 /* MenuView.swift */,
 				F108625929F745740017EFB0 /* purchaseView.swift */,
 				F108623329F7443B0017EFB0 /* Assets.xcassets */,
 				F108623529F7443B0017EFB0 /* Preview Content */,
@@ -235,8 +241,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F108625E29F759180017EFB0 /* MenuView.swift in Sources */,
 				F108625A29F745740017EFB0 /* purchaseView.swift in Sources */,
 				F108623229F744390017EFB0 /* ContentView.swift in Sources */,
+				F108625C29F759110017EFB0 /* LoginView.swift in Sources */,
 				F108623029F744390017EFB0 /* puntoDeVentaApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

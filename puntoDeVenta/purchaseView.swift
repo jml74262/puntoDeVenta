@@ -9,6 +9,7 @@ import SwiftUI
 import Combine
 
 struct purchaseView: View {
+    @Environment(\.presentationMode) var  presentationMode
     @State private var productID = ""
     @State private var name = ""
     @State private var pieces = ""
