@@ -47,11 +47,41 @@ struct SalesView: View {
                             self.onlyNumbersValue = "\(filtered)"
                         }
                     }
-                    TextField("IdVentas",text: $IdVentas)
-                    TextField("IdComprador",text: $IdComprador)
-                    TextField("Precio",text: $precio)
-                    TextField("Subtotal",text: $subtotal)
-                    TextField("Total",text: $total)
+                    TextField("IdVentas",text: $IdVentas).keyboardType(.numberPad)
+                        .onReceive(Just(IdVentas)) { value in
+                            let filtered = "\(value)".filter { "0123456789".contains($0) }
+                            if filtered != value {
+                                self.IdVentas = "\(filtered)"
+                            }
+                        }
+                    TextField("IdComprador",text: $IdComprador).keyboardType(.numberPad)
+                        .onReceive(Just(IdComprador)) { value in
+                            let filtered = "\(value)".filter { "0123456789".contains($0) }
+                            if filtered != value {
+                                self.IdComprador = "\(filtered)"
+                            }
+                        }
+                    TextField("Precio",text: $precio).keyboardType(.numberPad)
+                        .onReceive(Just(precio)) { value in
+                            let filtered = "\(value)".filter { "0123456789".contains($0) }
+                            if filtered != value {
+                                self.precio = "\(filtered)"
+                            }
+                        }
+                    TextField("Subtotal",text: $subtotal).keyboardType(.numberPad)
+                        .onReceive(Just(subtotal)) { value in
+                            let filtered = "\(value)".filter { "0123456789".contains($0) }
+                            if filtered != value {
+                                self.subtotal = "\(filtered)"
+                            }
+                        }
+                    TextField("Total",text: $total).keyboardType(.numberPad)
+                        .onReceive(Just(total)) { value in
+                            let filtered = "\(value)".filter { "0123456789".contains($0) }
+                            if filtered != value {
+                                self.total = "\(filtered)"
+                            }
+                        }
                     
                 }.padding()
                 

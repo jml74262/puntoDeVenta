@@ -36,7 +36,13 @@ struct purchaseView: View {
                             name = String(value.filter { $0.isLetter })
                         }
                     }
-                TextField("Pieces", text: $pieces)
+                TextField("Pieces", text: $pieces).keyboardType(.numberPad)
+                    .onReceive(Just(pieces)) { value in
+                        let filtered = "\(value)".filter { "0123456789".contains($0) }
+                        if filtered != value {
+                            self.pieces = "\(filtered)"
+                        }
+                    }
                 
             }.padding()
             Button("Register"){
