@@ -21,7 +21,7 @@ struct LoginView: View {
                     Form{
                             TextField("User", text: $user)
                             SecureField("Password", text: $password)
-                    }.frame(width: 280 , height: 150).scrollContentBackground(.hidden)
+                    }.frame(width: 280 , height: 150)
                         .onSubmit{
                         validateForm()
                     }.onSubmit {
