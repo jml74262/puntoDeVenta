@@ -8,6 +8,18 @@
 import SwiftUI
 import Combine
 
+enum Mode {
+  case new
+  case edit
+}
+ 
+enum Action {
+  case delete
+  case done
+  case cancel
+}
+ 
+
 struct purchaseView: View {
     @Environment(\.presentationMode) var  presentationMode
     @State private var productID = ""
@@ -15,6 +27,14 @@ struct purchaseView: View {
     @State private var pieces = ""
 
     @State private var mostrarAlerta = false
+    
+    @State var presentActionSheet = false
+     
+    @ObservedObject var viewModel = SalesViewModel()
+    var mode: Mode = .new
+    var completionHandler: ((Result<Action, Error>) -> Void)?
+    
+    
     
     var body: some View {
         VStack{
@@ -56,7 +76,12 @@ struct purchaseView: View {
             }
         }
     }
+    
 }
+
+
+
+
 
 struct purchaseView_Previews: PreviewProvider {
     static var previews: some View {
