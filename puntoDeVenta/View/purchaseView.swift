@@ -8,16 +8,7 @@
 import SwiftUI
 import Combine
 
-enum Mode {
-  case new
-  case edit
-}
- 
-enum Action {
-  case delete
-  case done
-  case cancel
-}
+
  
 
 struct purchaseView: View {

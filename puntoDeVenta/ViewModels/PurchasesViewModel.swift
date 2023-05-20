@@ -26,21 +26,22 @@ class PurchasesViewModel: ObservableObject {
     }
   }
    
-  func subscribe() {
-    if listenerRegistration == nil {
-      listenerRegistration = db.collection("purchase").addSnapshotListener { (querySnapshot, error) in
-        guard let documents = querySnapshot?.documents else {
-          print("No documents")
-          return
-        }
-         
-        self.purchases = documents.compactMap { queryDocumentSnapshot in
-          try? queryDocumentSnapshot.data(as: Purchase.self)
+    func subscribe() {
+      if listenerRegistration == nil {
+        listenerRegistration = db.collection("purchase").addSnapshotListener { (querySnapshot, error) in
+          guard let documents = querySnapshot?.documents else {
+            print("No documents")
+            return
+          }
+           
+          self.purchases = documents.compactMap { queryDocumentSnapshot in
+              var purchase = try? queryDocumentSnapshot.data(as: Purchase.self)
+              purchase?.id = queryDocumentSnapshot.documentID;
+              return purchase
+          }
         }
       }
     }
-  }
-   
   func removePurchases(atOffsets indexSet: IndexSet) {
     let purchases = indexSet.lazy.map { self.purchases[$0] }
     purchases.forEach { purchase in

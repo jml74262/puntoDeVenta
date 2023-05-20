@@ -23,12 +23,30 @@
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
-			<integer>1</integer>
+			<integer>0</integer>
 		</dict>
 		<key>puntoDeVenta.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>0</integer>
+			<integer>1</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>F108622B29F744390017EFB0</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F108623B29F7443B0017EFB0</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F108624529F7443B0017EFB0</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>

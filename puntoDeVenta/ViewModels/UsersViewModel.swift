@@ -35,7 +35,9 @@ class UsersViewModel: ObservableObject {
         }
          
         self.users = documents.compactMap { queryDocumentSnapshot in
-          try? queryDocumentSnapshot.data(as: User.self)
+            var user = try? queryDocumentSnapshot.data(as: User.self)
+            user?.id = queryDocumentSnapshot.documentID;
+            return user
         }
       }
     }
@@ -53,7 +55,5 @@ class UsersViewModel: ObservableObject {
       }
     }
   }
- 
-   
 }
 

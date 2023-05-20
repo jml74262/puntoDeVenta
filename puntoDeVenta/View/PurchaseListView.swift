@@ -1,5 +1,5 @@
 //
-//  UserListView.swift
+//  PurchaseListView.swift
 //  puntoDeVenta
 //
 //  Created by Martha Almanza Izquierdo Almanza on 19/05/23.
@@ -11,8 +11,8 @@ import FirebaseFirestore
 import Combine
 import SwiftUI
 
-struct UserListView: View {
-    @StateObject var viewModel = UsersViewModel() //MovieViewModel.swift
+struct PurchaseListView: View {
+    @StateObject var viewModel = PurchasesViewModel() //MovieViewModel.swift
     @State var presentAddMovieSheet = false
      
      
@@ -21,53 +21,45 @@ struct UserListView: View {
         Image(systemName: "plus")
       }
     }
-    private func userRowView(user: User) -> some View {
-       NavigationLink(destination: UserDetailView(user: user)) { //MovieDetailsView.swift
+    private func purchaseRowView(purchase: Purchase) -> some View {
+       NavigationLink(destination: PurchaseDetailView(purchase: purchase)) { //MovieDetailsView.swift
          VStack(alignment: .leading) {
-           Text(user.name)
+           Text(purchase.name)
              .font(.headline)
            //Text(movie.description)
            //  .font(.subheadline)
-            Text(user.email)
+             Text(String(purchase.pieces))
              .font(.subheadline)
          }
        }
     }
-    
-    /*List {
-                ForEach(viewModel.user) { user in
-                            Text(user.name + " " + user.lastname)
-                            Text(user.email)
-                            Text(String(user.age))
-                            // Agrega más vistas para mostrar otras propiedades del usuario
-                        }
-            }*/
     var body: some View {
       NavigationView {
         List {
-          ForEach (viewModel.users) { user in
-            userRowView(user: user)
+            ForEach (viewModel.purchases) { purchase in
+            purchaseRowView(purchase: purchase)
           }
           .onDelete() { indexSet in
             //viewModel.removeMovies(atOffsets: indexSet)
-            viewModel.removeUsers(atOffsets: indexSet)
+              viewModel.removePurchases(atOffsets: indexSet)
           }
         }
-        .navigationBarTitle("User")
+        .navigationBarTitle("Purchase")
         .navigationBarItems(trailing: addButton)
         .onAppear() {
-          print("UserListView appears. Subscribing to data updates.")
+          print("PurchaseListView appears. Subscribing to data updates.")
           self.viewModel.subscribe()
         }
         .sheet(isPresented: self.$presentAddMovieSheet) {
-          UserEditView() //MovieEditView.swift
+          PurchaseEditView() //MovieEditView.swift
         }
          
       }// End Navigation
     }// End Body
 }
-struct UserListView_Previews: PreviewProvider {
+
+struct PurchaseListView_Previews: PreviewProvider {
     static var previews: some View {
-        UserListView()
+        PurchaseListView()
     }
 }

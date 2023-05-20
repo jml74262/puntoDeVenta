@@ -15,7 +15,8 @@ struct UserView: View {
     @State private var contraseña = ""
     @State private var rol = ""
     @State var onlyNumbersValue: String = ""
-    var body: some View {
+   
+     var body: some View {
         VStack {
             Text("User").font(.largeTitle)
             Form{

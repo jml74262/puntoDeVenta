@@ -26,20 +26,22 @@ class ProductsViewModel: ObservableObject {
     }
   }
    
-  func subscribe() {
-    if listenerRegistration == nil {
-      listenerRegistration = db.collection("product").addSnapshotListener { (querySnapshot, error) in
-        guard let documents = querySnapshot?.documents else {
-          print("No documents")
-          return
-        }
-         
-        self.products = documents.compactMap { queryDocumentSnapshot in
-          try? queryDocumentSnapshot.data(as: Product.self)
+    func subscribe() {
+      if listenerRegistration == nil {
+        listenerRegistration = db.collection("product").addSnapshotListener { (querySnapshot, error) in
+          guard let documents = querySnapshot?.documents else {
+            print("No documents")
+            return
+          }
+           
+          self.products = documents.compactMap { queryDocumentSnapshot in
+              var product = try? queryDocumentSnapshot.data(as: Product.self)
+              product?.id = queryDocumentSnapshot.documentID;
+              return product
+          }
         }
       }
     }
-  }
    
   func removeProducts(atOffsets indexSet: IndexSet) {
     let products = indexSet.lazy.map { self.products[$0] }
