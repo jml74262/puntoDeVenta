@@ -16,7 +16,7 @@ class SaleVieModel : ObservableObject {
    
   private var cancellables = Set<AnyCancellable>()
    
-    init(sale: Sale = Sale(name: "", subtotal: 0.0, total: 0.0, pieces: 0)) {
+    init(sale: Sale = Sale(idClient: "", idProduct: "" ,name: "", subtotal: 0.0, total: 0.0, pieces: 0)) {
     self.sale = sale
      
     self.$sale

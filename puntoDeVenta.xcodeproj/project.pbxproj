@@ -16,6 +16,9 @@
 		C698A4D52A16052D0002DA5B /* Purchase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C698A4D42A16052D0002DA5B /* Purchase.swift */; };
 		C698A4D72A16059B0002DA5B /* Sale.swift in Sources */ = {isa = PBXBuildFile; fileRef = C698A4D62A16059B0002DA5B /* Sale.swift */; };
 		C698A4D92A1607190002DA5B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C698A4D82A1607190002DA5B /* User.swift */; };
+		C6BD70172A1AA54A0056E6D8 /* SaleListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6BD70162A1AA54A0056E6D8 /* SaleListView.swift */; };
+		C6BD70192A1AA69A0056E6D8 /* SaleDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6BD70182A1AA69A0056E6D8 /* SaleDetailView.swift */; };
+		C6BD701D2A1AA8E60056E6D8 /* SaleEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6BD701C2A1AA8E60056E6D8 /* SaleEditView.swift */; };
 		C6F168132A16C1B1004CEC06 /* ProductsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F168122A16C1B1004CEC06 /* ProductsViewModel.swift */; };
 		C6F168152A16C448004CEC06 /* PurchaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F168142A16C448004CEC06 /* PurchaseViewModel.swift */; };
 		C6F168172A16CABE004CEC06 /* SaleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F168162A16CABE004CEC06 /* SaleViewModel.swift */; };
@@ -68,6 +71,9 @@
 		C698A4D42A16052D0002DA5B /* Purchase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Purchase.swift; sourceTree = "<group>"; };
 		C698A4D62A16059B0002DA5B /* Sale.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sale.swift; sourceTree = "<group>"; };
 		C698A4D82A1607190002DA5B /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		C6BD70162A1AA54A0056E6D8 /* SaleListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaleListView.swift; sourceTree = "<group>"; };
+		C6BD70182A1AA69A0056E6D8 /* SaleDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaleDetailView.swift; sourceTree = "<group>"; };
+		C6BD701C2A1AA8E60056E6D8 /* SaleEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaleEditView.swift; sourceTree = "<group>"; };
 		C6F168122A16C1B1004CEC06 /* ProductsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsViewModel.swift; sourceTree = "<group>"; };
 		C6F168142A16C448004CEC06 /* PurchaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseViewModel.swift; sourceTree = "<group>"; };
 		C6F168162A16CABE004CEC06 /* SaleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaleViewModel.swift; sourceTree = "<group>"; };
@@ -173,6 +179,9 @@
 				C6F1682F2A18899D004CEC06 /* PurchaseListView.swift */,
 				C6F168312A1889B9004CEC06 /* PurchaseDetailView.swift */,
 				C6F168332A1889D0004CEC06 /* PurchaseEditView.swift */,
+				C6BD70162A1AA54A0056E6D8 /* SaleListView.swift */,
+				C6BD70182A1AA69A0056E6D8 /* SaleDetailView.swift */,
+				C6BD701C2A1AA8E60056E6D8 /* SaleEditView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -377,12 +386,15 @@
 				C6F1681D2A16D403004CEC06 /* UsersViewModel.swift in Sources */,
 				F108625C29F759110017EFB0 /* LoginView.swift in Sources */,
 				C698A4D72A16059B0002DA5B /* Sale.swift in Sources */,
+				C6BD701D2A1AA8E60056E6D8 /* SaleEditView.swift in Sources */,
 				C6F1682E2A186E27004CEC06 /* ProductEditView.swift in Sources */,
 				C6F1681F2A16D59C004CEC06 /* SalesViewModel.swift in Sources */,
 				C6F168282A18106E004CEC06 /* UserEditView.swift in Sources */,
 				C6F168192A16CE5E004CEC06 /* UserViewModel.swift in Sources */,
+				C6BD70192A1AA69A0056E6D8 /* SaleDetailView.swift in Sources */,
 				C6F1682C2A186E10004CEC06 /* ProductDetailView.swift in Sources */,
 				C6F168322A1889B9004CEC06 /* PurchaseDetailView.swift in Sources */,
+				C6BD70172A1AA54A0056E6D8 /* SaleListView.swift in Sources */,
 				C6F1681B2A16D2DF004CEC06 /* PurchasesViewModel.swift in Sources */,
 				F108623029F744390017EFB0 /* puntoDeVentaApp.swift in Sources */,
 				C6F168342A1889D0004CEC06 /* PurchaseEditView.swift in Sources */,

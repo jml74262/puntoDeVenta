@@ -26,20 +26,22 @@ class SalesViewModel: ObservableObject {
     }
   }
    
-  func subscribe() {
-    if listenerRegistration == nil {
-      listenerRegistration = db.collection("sale").addSnapshotListener { (querySnapshot, error) in
-        guard let documents = querySnapshot?.documents else {
-          print("No documents")
-          return
-        }
-         
-        self.sales = documents.compactMap { queryDocumentSnapshot in
-          try? queryDocumentSnapshot.data(as: Sale.self)
+    func subscribe() {
+      if listenerRegistration == nil {
+        listenerRegistration = db.collection("sale").addSnapshotListener { (querySnapshot, error) in
+          guard let documents = querySnapshot?.documents else {
+            print("No documents")
+            return
+          }
+           
+          self.sales = documents.compactMap { queryDocumentSnapshot in
+              var sale = try? queryDocumentSnapshot.data(as: Sale.self)
+              sale?.id = queryDocumentSnapshot.documentID;
+              return sale
+          }
         }
       }
     }
-  }
    
   func removeSales(atOffsets indexSet: IndexSet) {
     let sales = indexSet.lazy.map { self.sales[$0] }
