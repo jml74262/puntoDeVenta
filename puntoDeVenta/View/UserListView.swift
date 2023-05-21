@@ -12,60 +12,57 @@ import Combine
 import SwiftUI
 
 struct UserListView: View {
-    @StateObject var viewModel = UsersViewModel() //MovieViewModel.swift
-    @State var presentAddMovieSheet = false
-     
-     
+    @StateObject var viewModel = UsersViewModel()
+    @State private var presentAddUserSheet = false
+    
     private var addButton: some View {
-      Button(action: { self.presentAddMovieSheet.toggle() }) {
-        Image(systemName: "plus")
-      }
-    }
-    private func userRowView(user: User) -> some View {
-       NavigationLink(destination: UserDetailView(user: user)) { //MovieDetailsView.swift
-         VStack(alignment: .leading) {
-           Text(user.name)
-             .font(.headline)
-           //Text(movie.description)
-           //  .font(.subheadline)
-            Text(user.email)
-             .font(.subheadline)
-         }
-       }
+        Button(action: { self.presentAddUserSheet.toggle() }) {
+            Image(systemName: "plus")
+        }
     }
     
-    /*List {
-                ForEach(viewModel.user) { user in
-                            Text(user.name + " " + user.lastname)
-                            Text(user.email)
-                            Text(String(user.age))
-                            // Agrega más vistas para mostrar otras propiedades del usuario
-                        }
-            }*/
+    private func userRowView(user: User) -> some View {
+        NavigationLink(destination: UserDetailView(user: user)) {
+            VStack(alignment: .leading) {
+                Text(user.name)
+                    .font(.headline)
+                Text(user.email)
+                    .font(.subheadline)
+            }.cornerRadius(10.0)
+        }
+    }
+    
     var body: some View {
-      NavigationView {
-        List {
-          ForEach (viewModel.users) { user in
-            userRowView(user: user)
-          }
-          .onDelete() { indexSet in
-            //viewModel.removeMovies(atOffsets: indexSet)
-            viewModel.removeUsers(atOffsets: indexSet)
-          }
+        NavigationView {
+            List {
+                ForEach(viewModel.users) { user in
+                    userRowView(user: user)
+                }
+                .onDelete() { indexSet in
+                    viewModel.removeUsers(atOffsets: indexSet)
+                }
+            }
+            .navigationBarTitle("Users")
+            .navigationBarItems(trailing: addButton)
+            .onAppear() {
+                print("UserListView appears. Subscribing to data updates.")
+                self.viewModel.subscribe()
+            }
+            .sheet(isPresented: self.$presentAddUserSheet) {
+                UserEditView()
+            }
+            .background(Color.primaryColor) // Fondo principal
+            .foregroundColor(Color.secondaryColor) // Color de texto principal
         }
-        .navigationBarTitle("User")
-        .navigationBarItems(trailing: addButton)
-        .onAppear() {
-          print("UserListView appears. Subscribing to data updates.")
-          self.viewModel.subscribe()
-        }
-        .sheet(isPresented: self.$presentAddMovieSheet) {
-          UserEditView() //MovieEditView.swift
-        }
-         
-      }// End Navigation
-    }// End Body
+        .navigationViewStyle(StackNavigationViewStyle())
+    }
 }
+extension Color {
+    static let primaryColor = Color(#colorLiteral(red: 0.741, green: 0.478, blue: 0.133, alpha: 1.0))
+    static let secondaryColor = Color(#colorLiteral(red: 0.906, green: 0.565, blue: 0.133, alpha: 1.0))
+}
+
+
 struct UserListView_Previews: PreviewProvider {
     static var previews: some View {
         UserListView()

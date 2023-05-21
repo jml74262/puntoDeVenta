@@ -12,12 +12,12 @@ struct MenuView: View {
         var body: some View {
             NavigationView{
                 VStack{
-                    Button("Register"){
-                    }.padding(.all)
-                    Button("Sales"){
-    
-                    }.padding(.all)
-                    NavigationLink(destination: purchaseView(),
+                    NavigationLink(destination: Menu2View(),
+                                   label: {Text("Register ")}).padding(.all)
+                    NavigationLink(destination: SaleListView(),
+                                   label: {Text("Sales ")}).padding(.all)
+                
+                    NavigationLink(destination: PurchaseListView(),
                                    label: {Text("Purchase ")}).padding(.all)
                 }.padding().navigationTitle("").padding(.all)
             }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C68CF8372A1ACFDC007E7B3B /* Menu2View.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68CF8362A1ACFDC007E7B3B /* Menu2View.swift */; };
 		C698A4BD2A15BDD40002DA5B /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = C698A4BC2A15BDD40002DA5B /* FirebaseAuth */; };
 		C698A4BF2A15BDD40002DA5B /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = C698A4BE2A15BDD40002DA5B /* FirebaseDatabase */; };
 		C698A4C12A15BDD40002DA5B /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = C698A4C02A15BDD40002DA5B /* FirebaseFirestore */; };
@@ -66,6 +67,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C68CF8362A1ACFDC007E7B3B /* Menu2View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu2View.swift; sourceTree = "<group>"; };
 		C698A4D02A16020E0002DA5B /* ProductViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductViewModel.swift; sourceTree = "<group>"; };
 		C698A4D22A16033D0002DA5B /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		C698A4D42A16052D0002DA5B /* Purchase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Purchase.swift; sourceTree = "<group>"; };
@@ -182,6 +184,7 @@
 				C6BD70162A1AA54A0056E6D8 /* SaleListView.swift */,
 				C6BD70182A1AA69A0056E6D8 /* SaleDetailView.swift */,
 				C6BD701C2A1AA8E60056E6D8 /* SaleEditView.swift */,
+				C68CF8362A1ACFDC007E7B3B /* Menu2View.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -375,6 +378,7 @@
 				F1338BE729FA0D0A00DE5682 /* ProductView.swift in Sources */,
 				F1338BE529FA0CFF00DE5682 /* SalesView.swift in Sources */,
 				F108625E29F759180017EFB0 /* MenuView.swift in Sources */,
+				C68CF8372A1ACFDC007E7B3B /* Menu2View.swift in Sources */,
 				C698A4D12A16020F0002DA5B /* ProductViewModel.swift in Sources */,
 				C6F168222A175C4A004CEC06 /* UserListView.swift in Sources */,
 				C6F168152A16C448004CEC06 /* PurchaseViewModel.swift in Sources */,
