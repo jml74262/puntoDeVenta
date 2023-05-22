@@ -28,19 +28,16 @@ struct LoginView: View {
                     
                     
                     VStack{
-                        Form{
-                                TextField("User", text: $user)
-                                SecureField("Password", text: $password)
-                        }.frame(width: 280 , height: 150)
-                            .onSubmit{
-                            validateForm()
-                        }.onSubmit {
-                            validateForm()
-                        }
+                        
+                        TextField("User", text: $user).frame(width: 230, height: 50, alignment: .center).font(.body).foregroundColor(.white).background(.white).cornerRadius(10)
+                        SecureField("Password", text: $password).frame(width: 230, height: 50, alignment: .center).font(.body).foregroundColor(.white).background(.white).cornerRadius(10).padding()
+                        
                         NavigationLink(destination: MenuView(),
                         isActive: $isValid,
-                                       label: {Text("Iniciar sesion")}).font(.headline).foregroundColor(.white).background(Color(hex: 0xC3ADE6)).cornerRadius(30)
+                                       label: {Text("Iniciar sesion").padding().font(.body)}).font(.headline).foregroundColor(.white).background(Color(hex: 0xC3ADE6)).cornerRadius(30).padding()
                     }.navigationTitle("").padding().position(x: 225, y: 300)
+                           
+                        
                 }
                 
                 }

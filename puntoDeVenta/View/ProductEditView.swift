@@ -38,30 +38,51 @@ struct ProductEditView: View {
                   if !value.allSatisfy({ $0.isLetter || $0.isWhitespace }) {
                     viewModel.product.name = String(value.filter { $0.isLetter })
                 }}
-            TextField("Description", text: $viewModel.product.description)
+            TextField("Description", text: $viewModel.product.description).onChange(of: viewModel.product.description) { value in
+                if !value.allSatisfy({ $0.isLetter || $0.isWhitespace }) {
+                  viewModel.product.description = String(value.filter { $0.isLetter })
+              }}
               TextField("Cost", text: Binding<String>(
                          get: { String(describing: viewModel.product.cost) },
-                         set: { viewModel.product.cost = Double($0) ?? 0 }
+                         set: { newValue in
+                             let filtered = newValue.filter { "0123456789".contains($0) }
+                             viewModel.product.cost = Double(Int(filtered) ?? 0)
+                         }
                      ))
+              .keyboardType(.numberPad)
+              
               TextField("Price", text: Binding<String>(
                          get: { String(describing: viewModel.product.price) },
-                         set: { viewModel.product.price = Double($0) ?? 0 }
+                         set: { newValue in
+                             let filtered = newValue.filter { "0123456789".contains($0) }
+                             viewModel.product.price = Double(Int(filtered) ?? 0)
+                         }
                      ))
+              .keyboardType(.numberPad)
               TextField("Cost", text: Binding<String>(
                          get: { String(describing: viewModel.product.units) },
-                         set: { viewModel.product.units = Int($0) ?? 0 }
+                         set: { newValue in
+                             let filtered = newValue.filter { "0123456789".contains($0) }
+                             viewModel.product.units = Int(Double(Int(filtered) ?? 0))
+                         }
                      ))
+              .keyboardType(.numberPad)
+                     
               TextField("Utility", text: Binding<String>(
                          get: { String(describing: viewModel.product.utility) },
-                         set: { viewModel.product.utility = Double($0) ?? 0 }
+                         set: { newValue in
+                             let filtered = newValue.filter { "0123456789".contains($0) }
+                             viewModel.product.utility = Double(Int(Double(Int(filtered) ?? 0)))
+                         }
                      ))
+              .keyboardType(.numberPad)
           }
            
 
            
           if mode == .edit {
             Section {
-              Button("Delete User") { self.presentActionSheet.toggle() }
+              Button("Delete Product") { self.presentActionSheet.toggle() }
                 .foregroundColor(.red)
             }
           }

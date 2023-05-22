@@ -26,39 +26,42 @@ struct MenuView: View {
             VStack {
                 NavigationLink(destination: Menu2View(), isActive: $isValid) {
                     Text("Register")
+                        .frame(width: 150, height: 30, alignment: .center)
                         .font(.title)
                         .foregroundColor(.white)
                         .padding()
                         .background(Color(hex: 0xC3ADE6))
                         .cornerRadius(10)
-                        .position(x: 205, y: 200)
+                        
                     
                 }
                 .padding()
                 
-                NavigationLink(destination: PurchaseListView()) {
+                NavigationLink(destination: SaleListView()) {
                     Text("Sales")
+                        .frame(width: 150, height: 30, alignment: .center)
                         .font(.title)
                         .foregroundColor(.white)
                         .padding()
                         .background(Color(hex: 0xC3ADE6))
                         .cornerRadius(10)
-                        .position(x: 205, y: 25)
+                       
                 }
                 .padding()
                 
-                NavigationLink(destination: SaleListView()) {
+                NavigationLink(destination: PurchaseListView()) {
                     Text("Purchase")
+                        .frame(width: 150, height: 30, alignment: .center)
                         .font(.title)
                         .foregroundColor(.white)
                         .padding()
                         .background(Color(hex: 0xC3ADE6))
                         .cornerRadius(10)
-                        .position(x: 205, y: -150)
+                        
                 }
                 .padding()
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+            .frame(maxWidth: .infinity, maxHeight: .infinity,alignment: .top).position(x: 220, y: 490)
         }
         .navigationTitle("")
         .navigationViewStyle(StackNavigationViewStyle())

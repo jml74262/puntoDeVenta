@@ -54,7 +54,9 @@ struct SaleEditView: View {
               TextField("total", text: Binding<String>(
                 get: { String(describing: viewModel.sale.total) },
                          set: { viewModel.sale.total = Double($0) ?? 0 }
-                     ))
+                
+                    ))
+              
           }
            
 

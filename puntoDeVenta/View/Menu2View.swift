@@ -30,20 +30,22 @@ struct Menu2View: View {
                
                 NavigationLink(destination: UserListView(),
                                label: {Text("User")}).padding()
+                    .frame(width: 150, height: 30, alignment: .center)
                     .font(.title)
                     .foregroundColor(.white)
                     .padding()
                     .background(Color(hex: 0xC3ADE6))
-                    .cornerRadius(10).position(x: 205, y: 200)
+                    .cornerRadius(10).position(x: 215, y: 200)
             
                 NavigationLink(destination: ProductListView(),
                                label: {Text("Product ")}).padding()
+                    .frame(width: 150, height: 30, alignment: .center)
                     .font(.title)
                     .foregroundColor(.white)
                     .padding()
                     .background(Color(hex: 0xC3ADE6))
                     .cornerRadius(10)
-                    .position(x: 205, y: 5)
+                    .position(x: 215, y: -100)
             }.navigationTitle("")
                 
         }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)

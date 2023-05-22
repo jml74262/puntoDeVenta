@@ -55,11 +55,12 @@ struct UserEditView: View {
               TextField("Age", text: Binding<String>(
                   get: { String(describing: viewModel.user.age) },
                   set: { newValue in
-                      let filtered = newValue.filter { "0123456789".contains($0) }
+                      let filtered = newValue.filter { $0.isNumber }
                       viewModel.user.age = Int(filtered) ?? 0
                   }
               ))
               .keyboardType(.numberPad)
+
 
               TextField("Mail", text: $viewModel.user.email).onChange(of: viewModel.user.email) { value in
                   if !value.allSatisfy({ $0.isLetter}) {

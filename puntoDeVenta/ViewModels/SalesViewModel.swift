@@ -47,7 +47,7 @@ class SalesViewModel: ObservableObject {
     let sales = indexSet.lazy.map { self.sales[$0] }
     sales.forEach { sale in
       if let documentId = sale.id {
-        db.collection("purchase").document(documentId).delete { error in
+        db.collection("sale").document(documentId).delete { error in
           if let error = error {
             print("Unable to remove document: \(error.localizedDescription)")
           }

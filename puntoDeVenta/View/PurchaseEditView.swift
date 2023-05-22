@@ -39,22 +39,27 @@ struct PurchaseEditView: View {
                 }}
               TextField("Cost", text: Binding<String>(
                          get: { String(describing: viewModel.purchase.pieces) },
-                         set: { viewModel.purchase.pieces = Int($0) ?? 0 }
-              ))
+                         set: { newValue in
+                             let filtered = newValue.filter { "0123456789".contains($0) }
+                             viewModel.purchase.pieces = Int(Double(Int(filtered) ?? 0))
+                         }
+                     ))
+              .keyboardType(.numberPad)
+              
           }
            
 
            
           if mode == .edit {
             Section {
-              Button("Delete User") { self.presentActionSheet.toggle() }
+              Button("Delete Purchase") { self.presentActionSheet.toggle() }
                 .foregroundColor(.red)
             }
           }
         }
         .cornerRadius(40)
         .background(Image("rosa"))
-        .navigationTitle(mode == .new ? "New Product" : viewModel.purchase.name)
+        .navigationTitle(mode == .new ? "New Purchase" : viewModel.purchase.name)
         .navigationBarTitleDisplayMode(mode == .new ? .inline : .large)
         .navigationBarItems(
           leading: cancelButton,
@@ -63,7 +68,7 @@ struct PurchaseEditView: View {
         .actionSheet(isPresented: $presentActionSheet) {
           ActionSheet(title: Text("Are you sure?"),
                       buttons: [
-                        .destructive(Text("Delete Product"),
+                        .destructive(Text("Delete Purchase"),
                                      action: { self.handleDeleteTapped() }),
                         .cancel()
                       ])
