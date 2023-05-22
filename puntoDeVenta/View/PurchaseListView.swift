@@ -34,16 +34,19 @@ struct PurchaseListView: View {
        }
     }
     var body: some View {
-      NavigationView {
-        List {
-            ForEach (viewModel.purchases) { purchase in
-            purchaseRowView(purchase: purchase)
-          }
-          .onDelete() { indexSet in
-            //viewModel.removeMovies(atOffsets: indexSet)
-              viewModel.removePurchases(atOffsets: indexSet)
-          }
+        ZStack{
+            List {
+                ForEach (viewModel.purchases) { purchase in
+                purchaseRowView(purchase: purchase)
+              }
+              .onDelete() { indexSet in
+                //viewModel.removeMovies(atOffsets: indexSet)
+                  viewModel.removePurchases(atOffsets: indexSet)
+              }
+            }
+            
         }
+      
         .cornerRadius(40)
         .background(Color.clear)
         .navigationBarTitle("Purchase")
@@ -59,8 +62,7 @@ struct PurchaseListView: View {
         }
         .foregroundColor(Color(hex: 0xC3ADE6))
         .background(Image("rosa"))
-         
-      }// End Navigation
+    
     }// End Body
 }
 

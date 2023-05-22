@@ -69,6 +69,7 @@ struct UserListView: View {
             }
             .sheet(isPresented: self.$presentAddUserSheet) {
                 UserEditView()
+                
             }
         
          // Fondo principal

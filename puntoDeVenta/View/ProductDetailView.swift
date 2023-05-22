@@ -55,6 +55,7 @@ struct ProductDetailView: View {
       }
       .foregroundColor(Color(hex: 0xC3ADE6))
       .background(Image("rosa"))
+      
         
     }
      

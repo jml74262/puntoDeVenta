@@ -45,16 +45,30 @@ struct UserEditView: View {
         Form {
           Section(header: Text("User")) {
               TextField("Name", text: $viewModel.user.name).onChange(of: viewModel.user.name) { value in
-                if !value.allSatisfy({ $0.isLetter }) {
+                  if !value.allSatisfy({ $0.isLetter || $0.isWhitespace }) {
                     viewModel.user.name = String(value.filter { $0.isLetter })
                 }}
-            TextField("Lastname", text: $viewModel.user.lastname)
+            TextField("Lastname", text: $viewModel.user.lastname).onChange(of: viewModel.user.lastname) { value in
+                if !value.allSatisfy({ $0.isLetter || $0.isWhitespace }) {
+                  viewModel.user.lastname = String(value.filter { $0.isLetter })
+              }}
               TextField("Age", text: Binding<String>(
-                         get: { String(describing: viewModel.user.age) },
-                         set: { viewModel.user.age = Int($0) ?? 0 }
-                     ))
-              TextField("Mail", text: $viewModel.user.email)
-              TextField("Gender", text: $viewModel.user.gender)
+                  get: { String(describing: viewModel.user.age) },
+                  set: { newValue in
+                      let filtered = newValue.filter { "0123456789".contains($0) }
+                      viewModel.user.age = Int(filtered) ?? 0
+                  }
+              ))
+              .keyboardType(.numberPad)
+
+              TextField("Mail", text: $viewModel.user.email).onChange(of: viewModel.user.email) { value in
+                  if !value.allSatisfy({ $0.isLetter}) {
+                    viewModel.user.email = String(value.filter { $0.isLetter })
+                }}
+              TextField("Gender", text: $viewModel.user.gender).onChange(of: viewModel.user.gender) { value in
+                  if !value.allSatisfy({ $0.isLetter}) {
+                    viewModel.user.gender = String(value.filter { $0.isLetter })
+                }}
               TextField("Password", text: $viewModel.user.password)
           }
            

@@ -40,7 +40,7 @@ struct PurchaseEditView: View {
               TextField("Cost", text: Binding<String>(
                          get: { String(describing: viewModel.purchase.pieces) },
                          set: { viewModel.purchase.pieces = Int($0) ?? 0 }
-                     ))
+              ))
           }
            
 

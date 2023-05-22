@@ -33,16 +33,18 @@ struct ProductListView: View {
        }
     }
     var body: some View {
-      NavigationView {
-        List {
-            ForEach (viewModel.products) { product in
-            productRowView(product: product)
-          }
-          .onDelete() { indexSet in
-            //viewModel.removeMovies(atOffsets: indexSet)
-            viewModel.removeProducts(atOffsets: indexSet)
-          }
+        ZStack{
+            List {
+                ForEach (viewModel.products) { product in
+                productRowView(product: product)
+              }
+              .onDelete() { indexSet in
+                //viewModel.removeMovies(atOffsets: indexSet)
+                viewModel.removeProducts(atOffsets: indexSet)
+              }
+            }
         }
+     
         .cornerRadius(40)
         .background(Color.clear)
         .navigationBarTitle("Product")
@@ -59,7 +61,7 @@ struct ProductListView: View {
         .foregroundColor(Color(hex: 0xC3ADE6))
         .background(Image("rosa"))
          
-      }// End Navigation
+      // End Navigation
     }// End Body
 }
 
