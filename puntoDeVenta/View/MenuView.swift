@@ -20,7 +20,7 @@ struct MenuView: View {
                     NavigationLink(destination: PurchaseListView(),
                                    label: {Text("Purchase ")}).padding(.all)
                 }.padding().navigationTitle("").padding(.all)
-            }
+            }.navigationViewStyle(StackNavigationViewStyle())
         }
     }
 

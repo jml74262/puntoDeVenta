@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct Menu2View: View {
+    @Environment(\.presentationMode) var presentationMode
+    @State var presentEditMovieSheet = false
     var body: some View {
         NavigationView{
             VStack{
