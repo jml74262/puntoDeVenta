@@ -52,6 +52,8 @@ struct PurchaseEditView: View {
             }
           }
         }
+        .cornerRadius(40)
+        .background(Image("rosa"))
         .navigationTitle(mode == .new ? "New Product" : viewModel.purchase.name)
         .navigationBarTitleDisplayMode(mode == .new ? .inline : .large)
         .navigationBarItems(
@@ -67,6 +69,8 @@ struct PurchaseEditView: View {
                       ])
         }
       }
+      .foregroundColor(Color(hex: 0xC3ADE6))
+      .navigationBarTitleDisplayMode(.inline)
     }
      
     // Action Handlers

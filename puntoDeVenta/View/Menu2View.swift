@@ -10,16 +10,48 @@ import SwiftUI
 struct Menu2View: View {
     @Environment(\.presentationMode) var presentationMode
     @State var presentEditMovieSheet = false
+    
+    var mode: Mode = .new
     var body: some View {
-        NavigationView{
+        ZStack{
+            GeometryReader { geometry in
+                Image("ss2")
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: geometry.size.width, height: geometry.size.height)
+                    .clipped()
+                    .ignoresSafeArea(.all)
+                    .scaledToFill()
+            }
+
+            
+            
             VStack{
+               
                 NavigationLink(destination: UserListView(),
-                               label: {Text("User")}).padding(.all)
+                               label: {Text("User")}).padding()
+                    .font(.title)
+                    .foregroundColor(.white)
+                    .padding()
+                    .background(Color(hex: 0xC3ADE6))
+                    .cornerRadius(10).position(x: 205, y: 200)
             
                 NavigationLink(destination: ProductListView(),
-                               label: {Text("Product ")}).padding(.all)
-            }.padding().navigationTitle("").padding(.all)
-        }
+                               label: {Text("Product ")}).padding()
+                    .font(.title)
+                    .foregroundColor(.white)
+                    .padding()
+                    .background(Color(hex: 0xC3ADE6))
+                    .cornerRadius(10)
+                    .position(x: 205, y: 5)
+            }.navigationTitle("")
+                
+        }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+        
+            
+       
+        
+    
     }
 }
 

@@ -22,27 +22,46 @@ struct UserListView: View {
     }
     
     private func userRowView(user: User) -> some View {
-        NavigationLink(destination: UserDetailView(user: user)) {
-            VStack(alignment: .leading) {
-                Text(user.name)
-                    .font(.headline)
-                Text(user.email)
-                    .font(.subheadline)
-            }.cornerRadius(10.0)
+            NavigationLink(destination: UserDetailView(user: user)) {
+                VStack(alignment: .leading) {
+                    Text(user.name)
+                        .font(.headline)
+                    Text(user.email)
+                        .font(.subheadline)
+                }.cornerRadius(10.0)
+            
         }
+        
+     
     }
     
     var body: some View {
-        NavigationView {
-            List {
-                ForEach(viewModel.users) { user in
-                    userRowView(user: user)
-                }
-                .onDelete() { indexSet in
-                    viewModel.removeUsers(atOffsets: indexSet)
-                }
-            }
-            .navigationBarTitle("Users")
+        
+        ZStack{
+            
+         
+               
+                 
+                 List {
+                     ForEach(viewModel.users) { user in
+                         userRowView(user: user)
+                     }
+                     .onDelete() { indexSet in
+                         viewModel.removeUsers(atOffsets: indexSet)
+                     }
+                 }
+                 
+                 
+           
+
+          
+        }
+   
+        .cornerRadius(40)
+        .background(Color.clear)
+        .navigationBarTitle("Users")
+        .navigationBarTitleDisplayMode(.inline)
+        .foregroundColor(Color(hex: 0xC3ADE6))
             .navigationBarItems(trailing: addButton)
             .onAppear() {
                 print("UserListView appears. Subscribing to data updates.")
@@ -51,16 +70,17 @@ struct UserListView: View {
             .sheet(isPresented: self.$presentAddUserSheet) {
                 UserEditView()
             }
-            .background(Color.primaryColor) // Fondo principal
-            .foregroundColor(Color.secondaryColor) // Color de texto principal
-        }
-        .navigationViewStyle(StackNavigationViewStyle())
+        
+         // Fondo principal
+            .foregroundColor(Color(hex: 0xC3ADE6))
+            .background(Image("rosa"))// Color de texto principal
+            
+        
+        
     }
+    
 }
-extension Color {
-    static let primaryColor = Color(#colorLiteral(red: 0.741, green: 0.478, blue: 0.133, alpha: 1.0))
-    static let secondaryColor = Color(#colorLiteral(red: 0.906, green: 0.565, blue: 0.133, alpha: 1.0))
-}
+
 
 
 struct UserListView_Previews: PreviewProvider {

@@ -32,6 +32,8 @@ struct SaleDetailView: View {
             
         }
       }
+      .cornerRadius(40)
+      .background(Color.clear)
       .navigationBarTitle(sale.name)
       .navigationBarItems(trailing: editButton {
         self.presentEditMovieSheet.toggle()
@@ -48,7 +50,8 @@ struct SaleDetailView: View {
             self.presentationMode.wrappedValue.dismiss()
           }
         }
-      }
+      }.foregroundColor(Color(hex: 0xC3ADE6))
+            .background(Image("rosa"))
     }
      
   }

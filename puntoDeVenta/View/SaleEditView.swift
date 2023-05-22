@@ -66,6 +66,8 @@ struct SaleEditView: View {
             }
           }
         }
+        .cornerRadius(40)
+        .background(Image("rosa"))
         .navigationTitle(mode == .new ? "New sale" : viewModel.sale.name)
         .navigationBarTitleDisplayMode(mode == .new ? .inline : .large)
         .navigationBarItems(
@@ -81,6 +83,8 @@ struct SaleEditView: View {
                       ])
         }
       }
+      .foregroundColor(Color(hex: 0xC3ADE6))
+      .navigationBarTitleDisplayMode(.inline)
     }
      
     // Action Handlers

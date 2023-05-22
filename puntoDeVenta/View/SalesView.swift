@@ -95,7 +95,10 @@ struct SalesView: View {
                 
                 
             }
+           
         }
+        .foregroundColor(Color(hex: 0xC3ADE6))
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
 struct SalesView_Previews: PreviewProvider {

@@ -33,6 +33,9 @@ struct ProductDetailView: View {
             
         }
       }
+      .cornerRadius(40)
+      .background(Color.clear) // Establece el fondo del Form como transparente
+      .padding()
       .navigationBarTitle(product.name)
       .navigationBarItems(trailing: editButton {
         self.presentEditMovieSheet.toggle()
@@ -50,6 +53,9 @@ struct ProductDetailView: View {
           }
         }
       }
+      .foregroundColor(Color(hex: 0xC3ADE6))
+      .background(Image("rosa"))
+        
     }
      
   }

@@ -44,7 +44,11 @@ struct PurchaseListView: View {
               viewModel.removePurchases(atOffsets: indexSet)
           }
         }
+        .cornerRadius(40)
+        .background(Color.clear)
         .navigationBarTitle("Purchase")
+        .navigationBarTitleDisplayMode(.inline)
+        .foregroundColor(Color(hex: 0xC3ADE6))
         .navigationBarItems(trailing: addButton)
         .onAppear() {
           print("PurchaseListView appears. Subscribing to data updates.")
@@ -53,6 +57,8 @@ struct PurchaseListView: View {
         .sheet(isPresented: self.$presentAddMovieSheet) {
           PurchaseEditView() //MovieEditView.swift
         }
+        .foregroundColor(Color(hex: 0xC3ADE6))
+        .background(Image("rosa"))
          
       }// End Navigation
     }// End Body

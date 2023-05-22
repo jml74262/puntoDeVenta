@@ -46,7 +46,11 @@ struct SaleListView: View {
             viewModel.removeSales(atOffsets: indexSet)
           }
         }
+        .cornerRadius(40)
+        .background(Color.clear)
         .navigationBarTitle("Sale")
+        .navigationBarTitleDisplayMode(.inline)
+        .foregroundColor(Color(hex: 0xC3ADE6))
         .navigationBarItems(trailing: addButton)
         .onAppear() {
           print("SaleListView appears. Subscribing to data updates.")
@@ -55,6 +59,9 @@ struct SaleListView: View {
         .sheet(isPresented: self.$presentAddMovieSheet) {
           SaleEditView() //MovieEditView.swift
         }
+          
+        .foregroundColor(Color(hex: 0xC3ADE6))
+        .background(Image("rosa"))
          
       }// End Navigation
     }// End Body

@@ -18,8 +18,9 @@ struct UserDetailView: View {
         Text("Edit")
       }
     }
-     
+       
     var body: some View {
+      
       Form {
         Section(header: Text("User")) {
             Text(user.name).bold()
@@ -32,6 +33,9 @@ struct UserDetailView: View {
             
         }
       }
+      .cornerRadius(40)
+      .background(Color.clear) // Establece el fondo del Form como transparente
+      .padding()
       .navigationBarTitle(user.name)
       .navigationBarItems(trailing: editButton {
         self.presentEditMovieSheet.toggle()
@@ -49,9 +53,15 @@ struct UserDetailView: View {
           }
         }
       }
+      
+      .foregroundColor(Color(hex: 0xC3ADE6))
+      .background(Image("rosa"))
+            
     }
      
-  }
+        
+     
+}
 
 struct UserDetailView_Previews: PreviewProvider {
     static var previews: some View {

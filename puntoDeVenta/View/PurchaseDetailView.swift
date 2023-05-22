@@ -26,6 +26,8 @@ struct PurchaseDetailView: View {
             Text(String(purchase.pieces)).bold()
         }
       }
+      .cornerRadius(40)
+      .background(Color.clear)
       .navigationBarTitle(purchase.name)
       .navigationBarItems(trailing: editButton {
         self.presentEditMovieSheet.toggle()
@@ -43,6 +45,8 @@ struct PurchaseDetailView: View {
           }
         }
       }
+      .foregroundColor(Color(hex: 0xC3ADE6))
+      .background(Image("rosa"))
     }
      
   }

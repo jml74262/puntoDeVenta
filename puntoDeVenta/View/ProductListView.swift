@@ -43,7 +43,11 @@ struct ProductListView: View {
             viewModel.removeProducts(atOffsets: indexSet)
           }
         }
+        .cornerRadius(40)
+        .background(Color.clear)
         .navigationBarTitle("Product")
+        .navigationBarTitleDisplayMode(.inline)
+        .foregroundColor(Color(hex: 0xC3ADE6))
         .navigationBarItems(trailing: addButton)
         .onAppear() {
           print("ProductListView appears. Subscribing to data updates.")
@@ -52,6 +56,8 @@ struct ProductListView: View {
         .sheet(isPresented: self.$presentAddMovieSheet) {
           ProductEditView() //MovieEditView.swift
         }
+        .foregroundColor(Color(hex: 0xC3ADE6))
+        .background(Image("rosa"))
          
       }// End Navigation
     }// End Body
