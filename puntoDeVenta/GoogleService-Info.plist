@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>402921553872-hd41v3mcg1kl16c46tnefds7b0hj4n1h.apps.googleusercontent.com</string>
+	<string>182949597561-v0i4ejg25vd0m52765lq7nhp3q6u5h67.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.402921553872-hd41v3mcg1kl16c46tnefds7b0hj4n1h</string>
+	<string>com.googleusercontent.apps.182949597561-v0i4ejg25vd0m52765lq7nhp3q6u5h67</string>
 	<key>API_KEY</key>
-	<string>AIzaSyCa66ROUGmR4J9x8c_QoQuTrbwIojpiVHY</string>
+	<string>AIzaSyDEKZO78WZc3lps0s_L844wzSENhcN-e-8</string>
 	<key>GCM_SENDER_ID</key>
-	<string>402921553872</string>
+	<string>182949597561</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>org.emiliano.IOSFirebase</string>
+	<string>ldflutterfirebase.flutterFirebase</string>
 	<key>PROJECT_ID</key>
-	<string>puntodeventa-7b142</string>
+	<string>flutterfirebase-b7fec</string>
 	<key>STORAGE_BUCKET</key>
-	<string>puntodeventa-7b142.appspot.com</string>
+	<string>flutterfirebase-b7fec.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,6 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:402921553872:ios:81469a85fe427f4fa903d5</string>
+	<string>1:182949597561:ios:289742a3672a704334dfa8</string>
 </dict>
 </plist>

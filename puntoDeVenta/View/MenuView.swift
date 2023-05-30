@@ -31,7 +31,7 @@ struct MenuView: View {
                 
             CustomNavLink(text: "Purchase", view: PurchaseListView())
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity,alignment: .top).position(x: 220, y: 490)
+      
         }
         .navigationTitle("Menu")
         .navigationViewStyle(StackNavigationViewStyle())

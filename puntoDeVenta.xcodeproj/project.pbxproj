@@ -28,7 +28,6 @@
 		C6F1681D2A16D403004CEC06 /* UsersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F1681C2A16D403004CEC06 /* UsersViewModel.swift */; };
 		C6F1681F2A16D59C004CEC06 /* SalesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F1681E2A16D59C004CEC06 /* SalesViewModel.swift */; };
 		C6F168222A175C4A004CEC06 /* UserListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F168212A175C4A004CEC06 /* UserListView.swift */; };
-		C6F168242A1765D5004CEC06 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C6F168232A1765D5004CEC06 /* GoogleService-Info.plist */; };
 		C6F168262A180E9D004CEC06 /* UserDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F168252A180E9D004CEC06 /* UserDetailView.swift */; };
 		C6F168282A18106E004CEC06 /* UserEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F168272A18106E004CEC06 /* UserEditView.swift */; };
 		C6F1682A2A186D0C004CEC06 /* ProductListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F168292A186D0C004CEC06 /* ProductListView.swift */; };
@@ -47,6 +46,7 @@
 		F1338BE329FA072200DE5682 /* UserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1338BE229FA072200DE5682 /* UserView.swift */; };
 		F1338BE529FA0CFF00DE5682 /* SalesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1338BE429FA0CFF00DE5682 /* SalesView.swift */; };
 		F1338BE729FA0D0A00DE5682 /* ProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1338BE629FA0D0A00DE5682 /* ProductView.swift */; };
+		F1CFDD112A25778500B2D15C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F1CFDD102A25778500B2D15C /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,7 +84,6 @@
 		C6F1681C2A16D403004CEC06 /* UsersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersViewModel.swift; sourceTree = "<group>"; };
 		C6F1681E2A16D59C004CEC06 /* SalesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalesViewModel.swift; sourceTree = "<group>"; };
 		C6F168212A175C4A004CEC06 /* UserListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListView.swift; sourceTree = "<group>"; };
-		C6F168232A1765D5004CEC06 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C6F168252A180E9D004CEC06 /* UserDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailView.swift; sourceTree = "<group>"; };
 		C6F168272A18106E004CEC06 /* UserEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserEditView.swift; sourceTree = "<group>"; };
 		C6F168292A186D0C004CEC06 /* ProductListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListView.swift; sourceTree = "<group>"; };
@@ -106,6 +105,7 @@
 		F1338BE229FA072200DE5682 /* UserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserView.swift; sourceTree = "<group>"; };
 		F1338BE429FA0CFF00DE5682 /* SalesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalesView.swift; sourceTree = "<group>"; };
 		F1338BE629FA0D0A00DE5682 /* ProductView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductView.swift; sourceTree = "<group>"; };
+		F1CFDD102A25778500B2D15C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -210,7 +210,7 @@
 		F108622E29F744390017EFB0 /* puntoDeVenta */ = {
 			isa = PBXGroup;
 			children = (
-				C6F168232A1765D5004CEC06 /* GoogleService-Info.plist */,
+				F1CFDD102A25778500B2D15C /* GoogleService-Info.plist */,
 				C6F168202A16DC84004CEC06 /* View */,
 				F108622F29F744390017EFB0 /* puntoDeVentaApp.swift */,
 				C698A4CF2A16020E0002DA5B /* ViewModels */,
@@ -344,8 +344,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				F108623729F7443B0017EFB0 /* Preview Assets.xcassets in Resources */,
-				C6F168242A1765D5004CEC06 /* GoogleService-Info.plist in Resources */,
 				F108623429F7443B0017EFB0 /* Assets.xcassets in Resources */,
+				F1CFDD112A25778500B2D15C /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
