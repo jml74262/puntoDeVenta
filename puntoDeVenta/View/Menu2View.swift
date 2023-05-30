@@ -28,24 +28,9 @@ struct Menu2View: View {
             
             VStack{
                
-                NavigationLink(destination: UserListView(),
-                               label: {Text("User")}).padding()
-                    .frame(width: 150, height: 30, alignment: .center)
-                    .font(.title)
-                    .foregroundColor(.white)
-                    .padding()
-                    .background(Color(hex: 0xC3ADE6))
-                    .cornerRadius(10).position(x: 215, y: 200)
+               CustomNavLink(text: "User", view: UserListView())
             
-                NavigationLink(destination: ProductListView(),
-                               label: {Text("Product ")}).padding()
-                    .frame(width: 150, height: 30, alignment: .center)
-                    .font(.title)
-                    .foregroundColor(.white)
-                    .padding()
-                    .background(Color(hex: 0xC3ADE6))
-                    .cornerRadius(10)
-                    .position(x: 215, y: -100)
+               CustomNavLink(text: "Product", view: ProductListView())
             }.navigationTitle("")
                 
         }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)

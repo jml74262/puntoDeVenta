@@ -24,47 +24,36 @@ struct MenuView: View {
             }
             
             VStack {
-                NavigationLink(destination: Menu2View(), isActive: $isValid) {
-                    Text("Register")
-                        .frame(width: 150, height: 30, alignment: .center)
-                        .font(.title)
-                        .foregroundColor(.white)
-                        .padding()
-                        .background(Color(hex: 0xC3ADE6))
-                        .cornerRadius(10)
-                        
-                    
-                }
-                .padding()
+              
+                CustomNavLink(text: "Register", view: Menu2View())
                 
-                NavigationLink(destination: SaleListView()) {
-                    Text("Sales")
-                        .frame(width: 150, height: 30, alignment: .center)
-                        .font(.title)
-                        .foregroundColor(.white)
-                        .padding()
-                        .background(Color(hex: 0xC3ADE6))
-                        .cornerRadius(10)
-                       
-                }
-                .padding()
+                CustomNavLink(text: "Sales", view: SaleListView())
                 
-                NavigationLink(destination: PurchaseListView()) {
-                    Text("Purchase")
-                        .frame(width: 150, height: 30, alignment: .center)
-                        .font(.title)
-                        .foregroundColor(.white)
-                        .padding()
-                        .background(Color(hex: 0xC3ADE6))
-                        .cornerRadius(10)
-                        
-                }
-                .padding()
+            CustomNavLink(text: "Purchase", view: PurchaseListView())
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity,alignment: .top).position(x: 220, y: 490)
         }
-        .navigationTitle("")
+        .navigationTitle("Menu")
         .navigationViewStyle(StackNavigationViewStyle())
+    }
+}
+
+struct CustomNavLink<Destination: View>: View{
+    let text: String
+    let view: Destination
+    var body: some View{
+        VStack{
+            NavigationLink(destination: view) {
+                Text(text)
+                    .frame(width: 150, height: 30, alignment: .center)
+                    .font(.title)
+                    .foregroundColor(.white)
+                    .padding()
+                    .background(Color(hex: 0xC3ADE6))
+                    .cornerRadius(10)
+                    
+            }
+        }
     }
 }
 
