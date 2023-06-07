@@ -29,11 +29,7 @@ struct LoginView: View {
                 Text("Log In")
             }
             
-            Button(action: {
-                register()
-            }) {
-                Text("Register")
-            }
+           CustomNavLink(text: "Registrar", view: UserEditView())
         }
         .padding()
         .fullScreenCover(isPresented: $isLoggedIn) {
@@ -54,7 +50,7 @@ struct LoginView: View {
         }
     }
     
-    private func register() {
+  /*  private func register() {
         Auth.auth().createUser(withEmail: email, password: password) { result, error in
             if let error = error {
                 // Manejo del error de registro
@@ -65,7 +61,7 @@ struct LoginView: View {
                
             }
         }
-    }
+    }*/
 }
 
 

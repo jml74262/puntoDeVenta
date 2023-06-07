@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 import FirebaseFirestore
-
+import Firebase
 
 class UserViewModel : ObservableObject {
    
@@ -17,7 +17,7 @@ class UserViewModel : ObservableObject {
    
   private var cancellables = Set<AnyCancellable>()
    
-    init(user: User = User(age: 0, email: "", gender: "", lastname: "", name: "", password: "")) {
+    init(user: User = User(age: 0, email: "", gender: "", lastname: "", name: "", password: "", role: "")) {
     self.user = user
      
     self.$user
@@ -35,6 +35,16 @@ class UserViewModel : ObservableObject {
   private func addUser(_ user: User) {
     do {
       let _ = try db.collection("user").addDocument(from: user)
+        Auth.auth().createUser(withEmail: user.email, password: user.password) { result, error in
+            if let error = error {
+                // Manejo del error de registro
+                print("Error registering user: \(error.localizedDescription)")
+            } else {
+                // Registro exitoso
+                print("User registered successfully.")
+               
+            }
+        }
     }
     catch {
       print(error)

@@ -29,6 +29,7 @@ struct UserDetailView: View {
             Text(String(user.age)).bold()
             Text(user.gender).bold()
             Text(user.password).bold()
+            Text(user.role).bold()
             
             
         }
@@ -66,7 +67,7 @@ struct UserDetailView: View {
 
 struct UserDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        let user = User(age: 21, email: "example@example.com", gender: "Gender", lastname: "Lastname", name: "name", password: "Pass")
+        let user = User(id:"",age: 21, email: "example@example.com", gender: "Gender", lastname: "Lastname", name: "name", password: "Pass", role:"Prueba")
         return
           NavigationView {
             UserDetailView(user: user)

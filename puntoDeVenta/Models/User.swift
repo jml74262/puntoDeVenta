@@ -9,7 +9,6 @@ import Foundation
 import FirebaseFirestoreSwift
 
 struct User: Identifiable, Codable {
-    
     @DocumentID var id: String?
     var age: Int
     var email: String
@@ -17,16 +16,19 @@ struct User: Identifiable, Codable {
     var lastname: String
     var name: String
     var password: String
+    var role: String
     
     
     
     
     enum CodingKeys: String, CodingKey {
+        case id
         case age
         case email
         case gender
         case lastname
         case name
         case password
+        case role
     }
 }

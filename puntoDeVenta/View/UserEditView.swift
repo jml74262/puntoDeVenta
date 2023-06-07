@@ -62,13 +62,14 @@ struct UserEditView: View {
               .keyboardType(.numberPad)
 
 
-              TextField("Mail", text: $viewModel.user.email).onChange(of: viewModel.user.email) { value in
-                  if !value.allSatisfy({ $0.isLetter}) {
-                    viewModel.user.email = String(value.filter { $0.isLetter })
-                }}
+              TextField("Mail", text: $viewModel.user.email)
               TextField("Gender", text: $viewModel.user.gender).onChange(of: viewModel.user.gender) { value in
                   if !value.allSatisfy({ $0.isLetter}) {
                     viewModel.user.gender = String(value.filter { $0.isLetter })
+                }}
+              TextField("Role", text: $viewModel.user.role).onChange(of: viewModel.user.role) { value in
+                  if !value.allSatisfy({ $0.isLetter}) {
+                    viewModel.user.role = String(value.filter { $0.isLetter })
                 }}
               TextField("Password", text: $viewModel.user.password)
           }
