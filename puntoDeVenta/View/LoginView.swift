@@ -12,29 +12,58 @@ struct LoginView: View {
     @State private var email: String = ""
     @State private var password: String = ""
     @State private var isLoggedIn: Bool = false
+    init(){
+        UITextField.appearance().backgroundColor = .clear
+    }
     
     var body: some View {
-        VStack {
-            TextField("Email", text: $email)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                .padding().textInputAutocapitalization(.never)
-            
-            SecureField("Password", text: $password)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                .padding().textInputAutocapitalization(.none)
-            
-            Button(action: {
-                login()
-            }) {
-                Text("Log In")
+        ZStack{
+            Image("login")
+                         .resizable()
+                         .scaledToFill()
+                         .edgesIgnoringSafeArea(.all) //
+            VStack {
+                Text("Welcome back, you've been missed!")
+                    .foregroundColor(.black)
+                    .font(.footnote)
+                let fondo = Color(red: 0.972, green: 0.996, blue: 0.941)
+                TextField("Email", text: $email)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .padding()
+                    .cornerRadius(10)
+                    .textContentType(.emailAddress)
+                    .autocapitalization(.none)
+
+                SecureField("Password", text: $password)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .padding()
+                    .background(Color.clear)
+                    .cornerRadius(10)
+                    .textContentType(.password)
+                    .autocapitalization(.none)
+                
+                Button(action: {
+                    login()
+                }) {
+                    let customColor = Color(red: 0.478, green: 0.416, blue: 0.325)
+                    Text("Sign in")
+                        .foregroundColor(.white)
+                        .padding(EdgeInsets(top: 10, leading: 25, bottom: 10, trailing: 25))
+                        .background(customColor)
+                        .cornerRadius(10)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 10)
+                                .stroke(customColor, lineWidth: 2)
+                        )
+                }.padding(EdgeInsets(top: 60, leading: 20, bottom: 10, trailing: 20))
+                
             }
-            
-           CustomNavLink(text: "Registrar", view: UserEditView())
+            .padding()
+            .fullScreenCover(isPresented: $isLoggedIn) {
+                MenuView()
+            }
+           
         }
-        .padding()
-        .fullScreenCover(isPresented: $isLoggedIn) {
-                  MenuView()
-              }
     }
     
     private func login() {

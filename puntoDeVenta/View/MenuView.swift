@@ -21,19 +21,19 @@ struct MenuView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                GeometryReader { geometry in
-                    Image("ss2")
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .frame(width: geometry.size.width, height: geometry.size.height)
-                        .clipped()
-                        .ignoresSafeArea(.all)
-                        .scaledToFill()
-                }
+         
+                    Image("menu")
+                                 .resizable()
+                                 .scaledToFill()
+                                 .edgesIgnoringSafeArea(.all) //
+                
                 
                 VStack {
                     if registro {
                         CustomNavLink(text: "Register", view: Menu2View())
+                    }
+                    if ventas {
+                        CustomNavLink(text: "Products", view: ProductListView())
                     }
                     
                     if ventas {
@@ -98,11 +98,10 @@ struct CustomNavLink<Destination: View>: View {
         VStack {
             NavigationLink(destination: view) {
                 Text(text)
-                    .frame(width: 150, height: 30, alignment: .center)
-                    .font(.title)
+                    .padding(EdgeInsets( top: 9, leading: 82, bottom: 3, trailing: 25))
+                    .font(.callout)
                     .foregroundColor(.white)
                     .padding()
-                    .background(Color(hex: 0xC3ADE6))
                     .cornerRadius(10)
             }
         }
