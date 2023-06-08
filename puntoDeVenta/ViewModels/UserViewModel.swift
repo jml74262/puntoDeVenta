@@ -6,14 +6,19 @@
 //
 
 import Foundation
+import UIKit
 import Combine
 import FirebaseFirestore
 import Firebase
+import CloudKit
 
 class UserViewModel : ObservableObject {
    
   @Published var user: User
   @Published var modified = false
+    var firebaseUserID: String?
+
+
    
   private var cancellables = Set<AnyCancellable>()
    
@@ -32,35 +37,52 @@ class UserViewModel : ObservableObject {
    
   private var db = Firestore.firestore()
    
-  private func addUser(_ user: User) {
-    do {
-      let _ = try db.collection("user").addDocument(from: user)
-        Auth.auth().createUser(withEmail: user.email, password: user.password) { result, error in
-            if let error = error {
-                // Manejo del error de registro
-                print("Error registering user: \(error.localizedDescription)")
-            } else {
-                // Registro exitoso
-                print("User registered successfully.")
-               
+    private func addUser(_ user: User) {
+        
+        do {//Agregha a la autenticaciòn
+            Auth.auth().createUser(withEmail: user.email, password: user.password) { [weak self] result, error in
+                if let error = error {
+                    // Manejo del error de registro
+                    print("Error registering user: \(error.localizedDescription)")
+                } else {
+                    // Registro exitoso
+                    print("User registered successfully.")
+                    
+                    // Asigna el ID generado a las propiedades id del usuario y firebaseUserID
+                    guard let userUid = result?.user.uid else {
+                        return
+                    }
+                    print(userUid)
+                    self?.user.id = userUid
+                    
+                    //AGREGA A LA BASE DE DATOS
+                    let db = Firestore.firestore()
+                    do{try db.collection("user").document(userUid).setData(from: user)
+                        
+                    }catch{
+                        print(error)
+                    }
+                }
             }
+        } catch {
+            print(error)
         }
     }
-    catch {
-      print(error)
-    }
-  }
+
+
    
-  private func updateUser(_ user: User) {
-      if let documentId = user.id {
-      do {
-        try db.collection("user").document(documentId).setData(from: user)
+    private func updateUser(_ user: User) {
+        if let documentId = user.id {
+        do {
+          try db.collection("user").document(documentId).setData(from: user)
+        }
+        catch {
+          print(error)
+        }
       }
-      catch {
-        print(error)
-      }
+          
     }
-  }
+
    
   private func updateOrAddUser() {
       if let _ = user.id {
