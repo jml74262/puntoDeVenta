@@ -24,7 +24,7 @@ class UsersViewModel: ObservableObject {
       listenerRegistration?.remove()
       listenerRegistration = nil
     }
-  }
+  } 
    
   func subscribe() {
     if listenerRegistration == nil {
