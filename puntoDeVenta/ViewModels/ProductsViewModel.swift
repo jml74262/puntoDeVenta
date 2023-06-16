@@ -55,6 +55,20 @@ class ProductsViewModel: ObservableObject {
       }
     }
   }
+    func fetchProducts() {
+          listenerRegistration = db.collection("product").addSnapshotListener { (querySnapshot, error) in
+              guard let documents = querySnapshot?.documents else {
+                  print("No documents")
+                  return
+              }
+
+              self.products = documents.compactMap { queryDocumentSnapshot in
+                  var product = try? queryDocumentSnapshot.data(as: Product.self)
+                  product?.id = queryDocumentSnapshot.documentID
+                  return product
+              }
+          }
+    }
  
    
 }

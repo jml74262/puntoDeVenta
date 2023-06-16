@@ -23,7 +23,7 @@ struct PurchaseEditView: View {
     }
      
     var saveButton: some View {
-      Button(action: { self.handleDoneTapped() }) {
+      Button(action: {  self.handleDoneTapped() }) {
         Text(mode == .new ? "Done" : "Save")
       }
       .disabled(!viewModel.modified)

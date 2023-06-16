@@ -7,15 +7,16 @@
 
 import Foundation
 import FirebaseFirestoreSwift
+
  
-struct Product: Identifiable, Codable,Hashable {
+struct Product: Identifiable, Codable, Hashable, Equatable {
   @DocumentID var id: String?
   var name: String
   var description: String
   var cost: Double
   var price: Double
     var units: Int
-    var utility : Double
+    var utility : Double 
    
   enum CodingKeys: String, CodingKey {
       case name

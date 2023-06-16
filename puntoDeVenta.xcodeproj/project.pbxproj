@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C600F00D2A3BDF160059FD0F /* DropdownOptionElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = C600F00C2A3BDF160059FD0F /* DropdownOptionElement.swift */; };
 		C68CF8372A1ACFDC007E7B3B /* Menu2View.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68CF8362A1ACFDC007E7B3B /* Menu2View.swift */; };
 		C698A4BD2A15BDD40002DA5B /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = C698A4BC2A15BDD40002DA5B /* FirebaseAuth */; };
 		C698A4BF2A15BDD40002DA5B /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = C698A4BE2A15BDD40002DA5B /* FirebaseDatabase */; };
@@ -67,6 +68,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C600F00C2A3BDF160059FD0F /* DropdownOptionElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropdownOptionElement.swift; sourceTree = "<group>"; };
 		C68CF8362A1ACFDC007E7B3B /* Menu2View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu2View.swift; sourceTree = "<group>"; };
 		C698A4D02A16020E0002DA5B /* ProductViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductViewModel.swift; sourceTree = "<group>"; };
 		C698A4D22A16033D0002DA5B /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
@@ -185,6 +187,7 @@
 				C6BD70182A1AA69A0056E6D8 /* SaleDetailView.swift */,
 				C6BD701C2A1AA8E60056E6D8 /* SaleEditView.swift */,
 				C68CF8362A1ACFDC007E7B3B /* Menu2View.swift */,
+				C600F00C2A3BDF160059FD0F /* DropdownOptionElement.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -392,6 +395,7 @@
 				C698A4D72A16059B0002DA5B /* Sale.swift in Sources */,
 				C6BD701D2A1AA8E60056E6D8 /* SaleEditView.swift in Sources */,
 				C6F1682E2A186E27004CEC06 /* ProductEditView.swift in Sources */,
+				C600F00D2A3BDF160059FD0F /* DropdownOptionElement.swift in Sources */,
 				C6F1681F2A16D59C004CEC06 /* SalesViewModel.swift in Sources */,
 				C6F168282A18106E004CEC06 /* UserEditView.swift in Sources */,
 				C6F168192A16CE5E004CEC06 /* UserViewModel.swift in Sources */,

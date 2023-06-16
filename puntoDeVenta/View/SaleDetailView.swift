@@ -23,8 +23,8 @@ struct SaleDetailView: View {
       Form {
         Section(header: Text("Sale")) {
             Text(sale.name).bold()
-            Text(sale.idClient).bold()
-            Text(sale.idProduct).bold()
+            Text(sale.IdClient).bold()
+            Text(sale.IdProduct).bold()
             Text(String(sale.pieces)).bold()
             Text(String(sale.subtotal)).bold()
             Text(String(sale.total)).bold()
@@ -45,19 +45,19 @@ struct SaleDetailView: View {
         print("UserDetailView.onDisappear()")
       }
       .sheet(isPresented: self.$presentEditMovieSheet) {
-        SaleEditView(viewModel: SaleVieModel(sale: sale), mode: .edit) { result in
-          if case .success(let action) = result, action == .delete {
-            self.presentationMode.wrappedValue.dismiss()
-          }
-        }
-      }.foregroundColor(Color(hex: 0xC3ADE6))
-            .background(Image("rosa"))
+            SaleEditView(viewModel: SaleVieModel(sale: sale), mode: .edit) { result in
+              if case .success(let action) = result, action == .delete {
+                self.presentationMode.wrappedValue.dismiss()
+              }
+            }
+          }.foregroundColor(Color(hex: 0xC3ADE6))
+                .background(Image("rosa"))
     }
      
   }
 struct SaleDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        let sale = Sale(idClient: "sadsadsa", idProduct: "hfgd", name: "pan", subtotal: 0, total: 0, pieces: 0)
+        let sale = Sale(IdClient: "sadsadsa", IdProduct: "hfgd", name: "pan", subtotal: 0, total: 0, pieces: 0)
         return
           NavigationView {
             SaleDetailView(sale: sale)

@@ -11,8 +11,8 @@ import FirebaseFirestoreSwift
 struct Sale: Identifiable, Codable {
     
   @DocumentID var id: String?
- var idClient: String
-    var idProduct: String
+ var IdClient: String
+    var IdProduct: String
   var name: String
   var subtotal: Double
   var total: Double
@@ -20,8 +20,8 @@ struct Sale: Identifiable, Codable {
     
    
   enum CodingKeys: String, CodingKey {
-      case idClient
-      case idProduct
+      case IdClient
+      case IdProduct
       case name
       case subtotal
       case total
