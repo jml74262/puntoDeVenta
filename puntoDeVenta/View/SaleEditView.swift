@@ -30,7 +30,7 @@ struct SaleEditView: View {
         .disabled(!viewModel.modified)
     }
 
-    struct Product: Identifiable, Hashable {
+    struct product: Identifiable, Hashable {
         let id: String
         let name: String
     }
@@ -45,8 +45,10 @@ struct SaleEditView: View {
                             isSelected: $isDropdownExpanded
                         ) {
                             ForEach(productViewModel.products, id: \.id) { product in
+                                VStack{}.padding()
                                 Button(action: {
-                                  //  product.isSelected.toggle()
+                                    print(product)
+                                    self.selectedProduct = product
                                     self.isDropdownExpanded = false
                                 }) {
                                     Text(product.name)
