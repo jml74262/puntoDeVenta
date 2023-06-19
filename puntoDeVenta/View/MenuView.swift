@@ -74,15 +74,15 @@ struct MenuView: View {
                         ventas = true
                         compras = true
                     } else if role == "Seller" {
-                        registro = true
-                        productos = true
+                        registro = false
+                        productos = false
                         ventas = true
                         compras = false
                     } else if role == "User" {
                         registro = false
                         productos = false
-                        ventas = false
-                        compras = true
+                        ventas = true
+                        compras = false
                     }
                 }
             }
