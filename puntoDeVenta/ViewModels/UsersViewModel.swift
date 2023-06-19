@@ -55,5 +55,21 @@ class UsersViewModel: ObservableObject {
       }
     }
   }
+    
+    func fetchUsers() {
+          listenerRegistration = db.collection("user").addSnapshotListener { (querySnapshot, error) in
+              guard let documents = querySnapshot?.documents else {
+                  print("No documents")
+                  return
+              }
+
+              self.users = documents.compactMap { queryDocumentSnapshot in
+                  var user = try? queryDocumentSnapshot.data(as: User.self)
+                  user?.id = queryDocumentSnapshot.documentID
+                  return user
+              }
+          }
+    }
+    
 }
 

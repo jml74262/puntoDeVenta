@@ -43,18 +43,13 @@ struct ProductEditView: View {
                   viewModel.product.description = String(value.filter { $0.isLetter })
               }}
               TextField("Cost", text: Binding<String>(
-                         get: { String(describing: viewModel.product.cost) },
-                         set: { newValue in
-                             let filtered = newValue.filter { "0123456789".contains($0) }
-                             viewModel.product.cost = Double(Int(filtered) ?? 0)
-                         }
-                     ))
-              .keyboardType(.numberPad)
-              
+                  get: { String(format: "%.2f", viewModel.product.cost) },
+                  set: { viewModel.product.cost = Double($0) ?? 0 }
+              ))
               TextField("Price", text: Binding<String>(
                          get: { String(describing: viewModel.product.price) },
                          set: { newValue in
-                             let filtered = newValue.filter { "0123456789".contains($0) }
+                             let filtered = newValue.filter { "0123456789".contains($0)}
                              viewModel.product.price = Double(Int(filtered) ?? 0)
                          }
                      ))

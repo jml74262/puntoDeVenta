@@ -12,7 +12,7 @@ import FirebaseFirestore
 class SaleVieModel : ObservableObject {
    
   @Published var sale: Sale
-  @Published var modified = false
+  @Published var modified = false 
    
   private var cancellables = Set<AnyCancellable>()
    
