@@ -1,13 +1,7 @@
-//
-//  SaleEditView.swift
-//  puntoDeVenta
-//
-//  Created by Martha Almanza Izquierdo Almanza on 21/05/23.
-//
 import SwiftUI
 import Firebase
 
-struct SaleEditView: View { 
+struct SaleEditView: View {
     @Environment(\.presentationMode) private var presentationMode
     @State var presentActionSheet = false
     @StateObject private var productViewModel = ProductsViewModel()
@@ -40,6 +34,10 @@ struct SaleEditView: View {
         let name: String
     }
     
+    var isEditable: Bool {
+        return mode == .new
+    }
+    
     var body: some View {
         NavigationView {
             Form {
@@ -48,7 +46,6 @@ struct SaleEditView: View {
                         DropdownOptionElement(
                             title: "Select Client",
                             isSelected: $isDropdownExpanded2
-                            
                         ) {
                             ForEach(userViewModel.users, id: \.id) { user in
                                 VStack{
@@ -59,7 +56,11 @@ struct SaleEditView: View {
                                             .frame(width: UIScreen.main.bounds.size.width * 0.80)
                                     }
                                     .background(.white)
-                                }.padding().scaledToFill().onTapGesture(perform: {
+                                    .disabled(!isEditable) // Disable user interaction
+                                }
+                                .padding()
+                                .scaledToFill()
+                                .onTapGesture(perform: {
                                     print(user)
                                     self.selectedUser = user
                                     self.isDropdownExpanded2 = false
@@ -76,13 +77,14 @@ struct SaleEditView: View {
                     .onAppear {
                         userViewModel.fetchUsers()
                     }
+                    
                     VStack {
                         DropdownOptionElement(
                             title: "Select Product",
                             isSelected: $isDropdownExpanded
                         ) {
                             ForEach(productViewModel.products, id: \.id) { product in
-                                VStack{
+                                VStack {
                                     Button(action: {
                                     }) {
                                         Text(product.name)
@@ -90,7 +92,11 @@ struct SaleEditView: View {
                                             .frame(width: UIScreen.main.bounds.size.width * 0.80)
                                     }
                                     .background(.white)
-                                }.padding().scaledToFill().onTapGesture(perform: {
+                                    .disabled(!isEditable) // Disable user interaction
+                                }
+                                .padding()
+                                .scaledToFill()
+                                .onTapGesture(perform: {
                                     print(product)
                                     self.selectedProduct = product
                                     self.isDropdownExpanded = false
@@ -105,28 +111,36 @@ struct SaleEditView: View {
                         if let selectedProduct = selectedProduct {
                             Text("Selected Product: \(selectedProduct.name)")
                                 .padding()
-                            
                         }
                     }
                     .onAppear {
                         productViewModel.fetchProducts()
                     }
+                    
                     VStack {
-                        Picker("How many?", selection: $selectedAmount){
-                            ForEach(0...(selectedProduct?.units ?? 0), id:\.self){ number in
+                        Picker("How many?", selection: $selectedAmount) {
+                            ForEach(0...(selectedProduct?.units ?? 0), id: \.self) { number in
                                 Text("\(number)")
                             }
-                            
                         }
+                        .disabled(!isEditable) // Disable user interaction
                     }
-                    VStack{
+                    
+                    VStack {
                         let price = selectedProduct?.price ?? 0
                         let formattedPrice = String(format: "%.2f", price)
-                        Text("Precio unitario : \((formattedPrice))" ).bold()
+                        Text("Precio unitario: \(formattedPrice)").bold()
                     }
-                    VStack{
+                    
+                    VStack {
                         Text("Cantidad a pagar: " + String((selectedProduct?.price ?? 0) * Double(selectedAmount))).bold()
-                        
+                    }
+                }
+                
+                if mode == .edit {
+                    Section {
+                        Button("Delete Sale") { self.presentActionSheet.toggle() }
+                            .foregroundColor(.red)
                     }
                 }
             }
@@ -135,6 +149,14 @@ struct SaleEditView: View {
                 leading: cancelButton,
                 trailing: saveButton
             )
+            .actionSheet(isPresented: $presentActionSheet) {
+                ActionSheet(title: Text("Are you sure?"),
+                            buttons: [
+                                .destructive(Text("Delete Product"),
+                                             action: { self.handleDeleteTapped() }),
+                                .cancel()
+                            ])
+            }
         }
     }
     
@@ -145,31 +167,31 @@ struct SaleEditView: View {
     }
     
     func handleDoneTapped() {
-          viewModel.sale.pieces = selectedAmount
-          viewModel.sale.subtotal = selectedProduct?.price ?? 0
-          viewModel.sale.total = (selectedProduct?.price ?? 0) * Double(selectedAmount)
-          
-          // Update the product units in Firebase
-          if let selectedProduct = selectedProduct {
-              let db = Firestore.firestore()
-              let productsRef = db.collection("product")
-              let productDocRef = productsRef.document(selectedProduct.id ?? "")
-              
-              productDocRef.updateData(["units": selectedProduct.units - selectedAmount]) { error in
-                  if let error = error {
-                      print("Error updating product units: \(error)")
-                  } else {
-                      print("Product units updated successfully.")
-                      // Handle any additional actions or dismiss the view
-                      self.viewModel.handleDoneTapped()
-                      self.dismiss()
-                  }
-              }
-          } else {
-              // Handle the case where no product is selected
-              print("No hay producto seleccionado ")
-          }
-      }
+        viewModel.sale.pieces = selectedAmount
+        viewModel.sale.subtotal = selectedProduct?.price ?? 0
+        viewModel.sale.total = (selectedProduct?.price ?? 0) * Double(selectedAmount)
+        
+        // Update the product units in Firebase
+        if let selectedProduct = selectedProduct {
+            let db = Firestore.firestore()
+            let productsRef = db.collection("product")
+            let productDocRef = productsRef.document(selectedProduct.id ?? "")
+            
+            productDocRef.updateData(["units": selectedProduct.units - selectedAmount]) { error in
+                if let error = error {
+                    print("Error updating product units: \(error)")
+                } else {
+                    print("Product units updated successfully.")
+                    // Handle any additional actions or dismiss the view
+                    self.viewModel.handleDoneTapped()
+                    self.dismiss()
+                }
+            }
+        } else {
+            // Handle the case where no product is selected
+            print("No hay producto seleccionado ")
+        }
+    }
     
     func handleDeleteTapped() {
         viewModel.handleDeleteTapped()

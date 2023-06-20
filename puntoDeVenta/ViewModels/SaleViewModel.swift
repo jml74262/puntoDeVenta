@@ -60,15 +60,30 @@ class SaleVieModel : ObservableObject {
     }
   }
    
-  private func removeSale() {
-    if let documentId = sale.id {
-      db.collection("sale").document(documentId).delete { error in
-        if let error = error {
-          print(error.localizedDescription)
+    private func removeSale() {
+        if let documentId = sale.id {
+            db.collection("sale").document(documentId).delete { [weak self] error in
+                if let error = error {
+                    print(error.localizedDescription)
+                } else {
+                    // Add back the units to the product
+                    if let productId = self?.sale.IdProduct, let pieces = self?.sale.pieces {
+                        let productsRef = self?.db.collection("product")
+                        let productDocRef = productsRef?.document(productId)
+                        
+                        productDocRef?.updateData(["units": FieldValue.increment(Int64(pieces))]) { error in
+                            if let error = error {
+                                print("Error adding back units to the product: \(error)")
+                            } else {
+                                print("Units added back to the product successfully.")
+                            }
+                        }
+                    }
+                }
+            }
         }
-      }
     }
-  }
+
    
   // UI handlers
    

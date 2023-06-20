@@ -97,6 +97,7 @@ struct ProductEditView: View {
                                      action: { self.handleDeleteTapped() }),
                         .cancel()
                       ])
+            
         }
       }
         .foregroundColor(Color(hex: 0xC3ADE6))
