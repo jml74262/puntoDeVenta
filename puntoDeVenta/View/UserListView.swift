@@ -23,7 +23,7 @@ struct UserListView: View {
     
     private func userRowView(user: User) -> some View {
             NavigationLink(destination: UserDetailView(user: user)) {
-                VStack(alignment: .leading) {
+                VStack(alignment: .leading, spacing: 5) {
                     Text(user.name)
                         .font(.headline)
                     Text(user.email)
@@ -38,30 +38,22 @@ struct UserListView: View {
     var body: some View {
         
         ZStack{
-            
-         
-               
-                 
-                 List {
-                     ForEach(viewModel.users) { user in
-                         userRowView(user: user)
-                     }
-                     .onDelete() { indexSet in
-                         viewModel.removeUsers(atOffsets: indexSet)
-                     }
-                 }
-                 
-                 
-           
-
-          
+                List {
+                                    ForEach(viewModel.users) { user in
+                                        userRowView(user: user)
+                                    }
+                                    .onDelete() { indexSet in
+                                        viewModel.removeUsers(atOffsets: indexSet)
+                                    }
+                                }
+                .padding(.top, 20)
         }
-   
+
         .cornerRadius(40)
         .background(Color.clear)
         .navigationBarTitle("Users")
         .navigationBarTitleDisplayMode(.inline)
-        .foregroundColor(Color(hex: 0xC3ADE6))
+        .foregroundColor(Color(hex: 0x964B00))
             .navigationBarItems(trailing: addButton)
             .onAppear() {
                 print("UserListView appears. Subscribing to data updates.")
@@ -73,7 +65,7 @@ struct UserListView: View {
             }
         
          // Fondo principal
-            .foregroundColor(Color(hex: 0xC3ADE6))
+            .foregroundColor(Color(hex: 0x964B00))
             .background(Image("rosa"))// Color de texto principal
             
         

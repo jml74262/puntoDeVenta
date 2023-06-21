@@ -50,7 +50,7 @@ struct SaleDetailView: View {
                 self.presentationMode.wrappedValue.dismiss()
               }
             }
-          }.foregroundColor(Color(hex: 0xC3ADE6))
+          }.foregroundColor(Color(hex: 0x964B00))
                 .background(Image("rosa"))
     }
      

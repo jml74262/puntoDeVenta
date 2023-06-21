@@ -97,7 +97,7 @@ struct SalesView: View {
             }
            
         }
-        .foregroundColor(Color(hex: 0xC3ADE6))
+        .foregroundColor(Color(hex: 0x964B00))
         .navigationBarTitleDisplayMode(.inline)
     }
 }

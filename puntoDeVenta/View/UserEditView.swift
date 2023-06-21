@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+import Combine
 enum Mode {
   case new
   case edit
@@ -21,7 +21,7 @@ enum Action {
 struct UserEditView: View {
     @Environment(\.presentationMode) private var presentationMode
     @State var presentActionSheet = false
-     
+    @State private var ageText: String = ""
     @ObservedObject var viewModel = UserViewModel()
     var mode: Mode = .new
     var completionHandler: ((Result<Action, Error>) -> Void)?
@@ -52,13 +52,12 @@ struct UserEditView: View {
                 if !value.allSatisfy({ $0.isLetter || $0.isWhitespace }) {
                   viewModel.user.lastname = String(value.filter { $0.isLetter })
               }}
-              TextField("Age", text: Binding<String>(
-                  get: { String(describing: viewModel.user.age) },
-                  set: { newValue in
-                      let filtered = newValue.filter { $0.isNumber }
+              TextField("Age", text: $ageText)
+                  .onChange(of: ageText) { newValue in
+                      let filtered = newValue.filter { "0123456789".contains($0) }
+                      ageText = filtered
                       viewModel.user.age = Int(filtered) ?? 0
                   }
-              ))
               .keyboardType(.numberPad)
 
 
@@ -100,7 +99,7 @@ struct UserEditView: View {
                       ])
         }
       }.edgesIgnoringSafeArea(.all)
-      .foregroundColor(Color(hex: 0xC3ADE6))
+      .foregroundColor(Color(hex: 0x964B00))
       .navigationBarTitleDisplayMode(.inline)
       
     }

@@ -51,7 +51,7 @@ struct PurchaseListView: View {
         .background(Color.clear)
         .navigationBarTitle("Purchase")
         .navigationBarTitleDisplayMode(.inline)
-        .foregroundColor(Color(hex: 0xC3ADE6))
+        .foregroundColor(Color(hex: 0x964B00))
         .navigationBarItems(trailing: addButton)
         .onAppear() {
           print("PurchaseListView appears. Subscribing to data updates.")
@@ -60,7 +60,7 @@ struct PurchaseListView: View {
         .sheet(isPresented: self.$presentAddMovieSheet) {
           PurchaseEditView() //MovieEditView.swift
         }
-        .foregroundColor(Color(hex: 0xC3ADE6))
+        .foregroundColor(Color(hex: 0x964B00))
         .background(Image("rosa"))
     
     }// End Body

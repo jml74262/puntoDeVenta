@@ -30,6 +30,7 @@ struct purchaseView: View {
     var body: some View {
         VStack{
             Text("Purchase").font(.largeTitle).padding()
+               
             
             Form{
                 TextField("Product ID", text: $productID)

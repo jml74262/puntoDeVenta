@@ -7,7 +7,9 @@
 
 import Foundation
 import Combine
+import Firebase
 import FirebaseFirestore
+
  
 class PurchaseViewModel: ObservableObject {
    
@@ -16,7 +18,7 @@ class PurchaseViewModel: ObservableObject {
    
   private var cancellables = Set<AnyCancellable>()
    
-    init(purchase: Purchase = Purchase(name: "", pieces: 0)) {
+    init(purchase: Purchase = Purchase(IdProduct: "",name: "", pieces: 0)) {
     self.purchase = purchase
      
     self.$purchase
@@ -31,25 +33,35 @@ class PurchaseViewModel: ObservableObject {
    
   private var db = Firestore.firestore()
    
-  private func addPurchase(_ purchase: Purchase) {
-    do {
-      let _ = try db.collection("purchase").addDocument(from: purchase)
-    }
-    catch {
-      print(error)
-    }
-  }
-   
-  private func updatePurchase(_ purchase: Purchase) {
-      if let documentId = purchase.id {
+    private func addPurchase(_ purchase: Purchase) {
       do {
-        try db.collection("purchase").document(documentId).setData(from: purchase)
+        let _ = try db.collection("purchase").addDocument(from: purchase) { error in
+          if let error = error {
+            print(error.localizedDescription)
+          }
+        }
       }
       catch {
         print(error)
       }
     }
-  }
+
+    private func updatePurchase(_ purchase: Purchase) {
+      if let documentId = purchase.id {
+        do {
+          try db.collection("purchase").document(documentId).setData(from: purchase) { error in
+            if let error = error {
+              print(error.localizedDescription)
+            }
+          }
+        }
+        catch {
+          print(error)
+        }
+      }
+    }
+
+
    
   private func updateOrAddPurchase() {
       if let _ = purchase.id {
@@ -59,16 +71,110 @@ class PurchaseViewModel: ObservableObject {
       addPurchase(purchase)
     }
   }
-   
-  private func removePurchase() {
-    if let documentId = purchase.id {
-      db.collection("purchase").document(documentId).delete { error in
-        if let error = error {
-          print(error.localizedDescription)
+    
+    func updateProduct(units: Int, productId: String) {
+        let db = Firestore.firestore()
+        let productRef = db.collection("product").document(productId)
+        
+        db.runTransaction({ (transaction, errorPointer) -> Any? in
+            let documentSnapshot: DocumentSnapshot
+            do {
+                try documentSnapshot = transaction.getDocument(productRef)
+            } catch let fetchError as NSError {
+                errorPointer?.pointee = fetchError
+                return nil
+            }
+            
+            guard let productData = documentSnapshot.data() else {
+                let error = NSError(domain: "AppErrorDomain", code: -1, userInfo: [
+                    NSLocalizedDescriptionKey: "Document does not exist."
+                ])
+                errorPointer?.pointee = error
+                return nil
+            }
+            
+            var currentUnits = productData["units"] as? Int ?? 0
+            currentUnits += units
+            
+            transaction.updateData(["units": currentUnits], forDocument: productRef)
+            
+            return nil
+        }) { (object, error) in
+            if let error = error {
+                print("Transaction failed: \(error.localizedDescription)")
+            } else {
+                print("Transaction successfully committed!")
+            }
         }
-      }
     }
-  }
+
+    func updateProduct2(decrementUnitsBy units: Int, productId: String) {
+        let db = Firestore.firestore()
+        let productRef = db.collection("product").document(productId)
+        
+        db.runTransaction({ (transaction, errorPointer) -> Any? in
+            let documentSnapshot: DocumentSnapshot
+            do {
+                try documentSnapshot = transaction.getDocument(productRef)
+            } catch let fetchError as NSError {
+                errorPointer?.pointee = fetchError
+                return nil
+            }
+            
+            guard var productData = documentSnapshot.data() else {
+                let error = NSError(domain: "AppErrorDomain", code: -1, userInfo: [
+                    NSLocalizedDescriptionKey: "Document does not exist."
+                ])
+                errorPointer?.pointee = error
+                return nil
+            }
+            
+            var currentUnits = productData["units"] as? Int ?? 0
+            currentUnits -= units
+            
+            productData["units"] = currentUnits
+            transaction.setData(productData, forDocument: productRef)
+            
+            return nil
+        }) { (object, error) in
+            if let error = error {
+                print("Transaction failed: \(error.localizedDescription)")
+            } else {
+                print("Transaction successfully committed!")
+            }
+        }
+    }
+
+
+
+
+
+
+   
+    private func removePurchase() {
+        if let documentId = purchase.id {
+            db.collection("purchase").document(documentId).delete { [weak self] error in
+                if let error = error {
+                    print(error.localizedDescription)
+                } else {
+                    // Subtract the units from the product
+                    if let productId = self?.purchase.IdProduct, let pieces = self?.purchase.pieces {
+                        let productsRef = self?.db.collection("product")
+                        let productDocRef = productsRef?.document(productId)
+                        
+                        productDocRef?.updateData(["units": FieldValue.increment(-Int64(pieces))]) { error in
+                            if let error = error {
+                                print("Error subtracting units from the product: \(error)")
+                            } else {
+                                print("Units subtracted from the product successfully.")
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
    
   // UI handlers
    

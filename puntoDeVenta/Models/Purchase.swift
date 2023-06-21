@@ -10,11 +10,13 @@ import FirebaseFirestoreSwift
  
 struct Purchase: Identifiable, Codable {
   @DocumentID var id: String?
-  var name: String
+    var IdProduct: String
+    var name: String
     var pieces: Int
     
    
   enum CodingKeys: String, CodingKey {
+      case IdProduct
       case name
       case pieces
   }

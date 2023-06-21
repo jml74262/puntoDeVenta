@@ -22,6 +22,7 @@ struct PurchaseDetailView: View {
     var body: some View {
       Form {
         Section(header: Text("Purchase")) {
+            Text(purchase.IdProduct).bold()
             Text(purchase.name).bold()
             Text(String(purchase.pieces)).bold()
         }
@@ -45,7 +46,7 @@ struct PurchaseDetailView: View {
           }
         }
       }
-      .foregroundColor(Color(hex: 0xC3ADE6))
+      .foregroundColor(Color(hex: 0x964B00))
       .background(Image("rosa"))
     }
      
@@ -53,7 +54,7 @@ struct PurchaseDetailView: View {
 
 struct PurchaseDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        let purchase = Purchase(name: "", pieces: 1)
+        let purchase = Purchase(IdProduct:"",name: "", pieces: 1)
         return
           NavigationView {
             PurchaseDetailView(purchase: purchase)

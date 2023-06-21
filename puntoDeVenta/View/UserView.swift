@@ -17,8 +17,15 @@ struct UserView: View {
     @State var onlyNumbersValue: String = ""
    
      var body: some View {
+        NavigationView {
         VStack {
-            Text("User").font(.largeTitle)
+            Text("User")
+                .font(.largeTitle)
+                .padding(EdgeInsets(top: 1, leading: 62, bottom: 3, trailing: 25))
+                                  .font(.callout)
+                                  .foregroundColor(Color(hex: 0x964B00)) // Cambiar el color del texto a café
+                                  .padding()
+                                  .cornerRadius(10)
             Form{
                 
                 TextField("Name", text: $name).onChange(of: name) { value in
@@ -65,6 +72,7 @@ struct UserView: View {
         
         .padding()
     }
+  }
 }
 
 struct UserView_Previews: PreviewProvider {

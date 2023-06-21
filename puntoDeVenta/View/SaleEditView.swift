@@ -26,7 +26,7 @@ struct SaleEditView: View {
         Button(action: { self.handleDoneTapped() }) {
             Text(mode == .new ? "Done" : "Save")
         }
-        .disabled(!viewModel.modified)
+        .disabled(!viewModel.modified || selectedAmount == 0)
     }
     
     struct product: Identifiable, Hashable {
@@ -56,7 +56,7 @@ struct SaleEditView: View {
                                             .frame(width: UIScreen.main.bounds.size.width * 0.80)
                                     }
                                     .background(.white)
-                                    .disabled(!isEditable) // Disable user interaction
+                                    .disabled(!isEditable || mode == .edit) // Disable user interaction
                                 }
                                 .padding()
                                 .scaledToFill()
@@ -92,7 +92,7 @@ struct SaleEditView: View {
                                             .frame(width: UIScreen.main.bounds.size.width * 0.80)
                                     }
                                     .background(.white)
-                                    .disabled(!isEditable) // Disable user interaction
+                                    .disabled(!isEditable || mode == .edit) // Disable user interaction
                                 }
                                 .padding()
                                 .scaledToFill()
@@ -123,7 +123,7 @@ struct SaleEditView: View {
                                 Text("\(number)")
                             }
                         }
-                        .disabled(!isEditable) // Disable user interaction
+                        .disabled(!isEditable || mode == .edit) // Disable user interaction
                     }
                     
                     VStack {
@@ -197,7 +197,7 @@ struct SaleEditView: View {
         viewModel.handleDeleteTapped()
         self.dismiss()
         self.completionHandler?(.success(.delete))
-    }
+    } 
     
     func dismiss() {
         self.presentationMode.wrappedValue.dismiss()
